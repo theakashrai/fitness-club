@@ -24,7 +24,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
     <style>
         table td {
-            font-size: 0.6em;
+            
             border-radius: 10px;
             font-weight: bold;
         }
