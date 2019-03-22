@@ -25,6 +25,7 @@
             No records to display
             @endif
         @if (sizeof($inOutData)>0) 
+        <div class="table-responsive">
         <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
@@ -44,6 +45,7 @@
             @endforeach
           
             </table>
+        </div>
             @endif
   </div>
   

@@ -14,6 +14,7 @@
         </div>
         <br /> 
         @endif
+        <div class="table-responsive">
         <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
@@ -87,6 +88,7 @@
                     {{ $employees->links() }}
             </tbody>
         </table>
+    </div>
   </div>
 </div>
 

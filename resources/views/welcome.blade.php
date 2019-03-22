@@ -96,7 +96,7 @@
                 @auth
                 <div class="links">
                     <a href="{{ url('/EmpMaster') }}">Members</a>
-                    <a href="{{ url('/inout') }}">Inout Details</a>
+                    <a href="{{ url('/inout') }}">Inout</a>
                     <a href="{{ url('/monPlan') }}">Plan Expiry</a>
                 </div>
                 @endauth

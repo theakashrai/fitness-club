@@ -14,6 +14,7 @@
   $today = new DateTime(date('d-M-Y'));
   $activeInterval = date_diff($today,$resigndt)->format('%a');
   ?>
+  <div class="table-responsive">
   <table class="table profile-det">
   <tr>
   <td colspan="2" align="center"> <img  src="<?php echo asset("storage/uploads/$emp->EmpImgFilePath") ?>" style="border-radius: 50%;"></td>
@@ -28,6 +29,7 @@
   </tr>
   
   </table>
+</div>
   </div>
 </div>
 </div>

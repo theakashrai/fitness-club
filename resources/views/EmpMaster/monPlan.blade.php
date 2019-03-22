@@ -13,6 +13,7 @@
         </div>
         <br /> 
         @endif
+        <div class="table-responsive">
         <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
@@ -73,6 +74,7 @@
                     @endforeach
             </tbody>
             </table>
+        </div>
   </div>
 </div>
 

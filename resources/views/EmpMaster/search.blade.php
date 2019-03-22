@@ -22,16 +22,6 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="CompCode">Company</label>
-                        <select name="CompCode">
-                            <option value=''>Choose..</option>
-                            @foreach($CompMaster as $option)
-                            <option value="{{$option->CompCode}}">{{$option->CompName}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
                         <label for="EmpName">Name</label>
                         <input type="text" class="form-control" name="EmpName" />
                     </div>
@@ -47,78 +37,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="EmpDOB">Date of Birth</label>
-                        <input type="date" class="form-control" name="EmpDOB" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="EmpJoinDate">Joining Date</label>
-                        <input type="date" class="form-control" name="EmpJoinDate" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="addPlan">Plan</label>
-                        <select name="addPlan">
-                            <option value='' selected="true">Choose..</option>
-                            <option value="1">
-                                Monthly
-                            </option>
-                            <option value="2">
-                                Quaterly
-                            </option>
-                            <option value="3">
-                                Half-Yearly
-                            </option>
-                            <option value="4">
-                                Yearly
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="EmpMarried">Martial Status</label>
-                        <select name="EmpMarried">
-                            <option value='' selected="true">Choose..</option>
-                            <option value="2">Married</option>
-                            <option value="1">Un-Married</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
                         <label for="EmpEmail">Email ID</label>
                         <input type="text" class="form-control" name="EmpEmail" />
                     </div>
                     <div class="form-group">
-                        <label for="ShiftGroupCode">Shift Group</label>
-                        <select name="ShiftGroupCode">
-                            <option value='' selected="true">Choose..</option>
-                            @foreach($ShiftGroupMaster as $option)
-                            <option value="{{$option->ShiftGroupCode}}">{{$option->ShiftGroupName}}</option>
-                            @endforeach
-                        </select>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="ShiftCode">Shift</label>
-                        <select name="ShiftCode">
-                            <option value='' selected="true">Choose..</option>
-                            @foreach($ShiftMaster as $option)
-                            <option value="{{$option->ShiftCode}}">{{$option->ShiftName}}</option>
-                            @endforeach
-                        </select>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="DeptCode">Department</label>
-                        <select name="DeptCode">
-                            <option value='' selected="true">Choose..</option>
-                            @foreach($DeptMaster as $option)
-                            <option value="{{$option->DeptCode}}">{{$option->DeptName}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
+                            <label for="EmpJoinDate">Date of Joining</label>
+                            <input type="date" class="form-control" name="EmpJoinDate"/>
+                        </div>
                     <div class="form-group">
                         <label for="DesgCode">Designation</label>
                         <select name="DesgCode">
@@ -130,7 +55,13 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" value="" name="ID" />
+                        <label for="ID">ID</label>
+                        <input type="text" class="form-control" name="ID" />
+                    </div>
+                    
+                    <div class="form-group">
+                            <label for="dtDiff">Plan Validity</label>
+                            <input type="text" class="form-control" name="dtDiff" />
                     </div>
 
                     <button type="submit" class="btn btn-primary">Search</button>

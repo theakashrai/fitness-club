@@ -7,6 +7,7 @@
   <div class="card-header">
     Member Details  </div>
   <div class="card-body">
+        <div class="table-responsive">
   <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
@@ -15,7 +16,6 @@
                     <th style="white-space:nowrap;">Phone Number</th>
                     <th style="white-space:nowrap;">Date of Birth</th>
                     <th style="white-space:nowrap;">Date of Joining</th>
-                    
                     <th style="white-space:nowrap;">Email</th>
                     <th style="white-space:nowrap;">Address</th>
                     <th style="white-space:nowrap;">PunchID</th>
@@ -77,10 +77,10 @@
                         </td>
                     </tr>
                     @endforeach
-                    {{ $employees->links() }} 
+                    {{-- $employees->links() --}} 
             </tbody>
         </table>
-        
+    </div>
   </div>
 </div>
 </div>

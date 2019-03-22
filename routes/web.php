@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('EmpMaster','EmployeeController');
-//Route::resource('EmpMaster','EmpController');
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/monPlan', 'EmployeeController@getPlanExpiry')->name('monPlan');
@@ -24,4 +24,4 @@ Route::get('/inout', 'EmployeeController@getInoutDuration')->name('inout');
 Route::post('/inout', 'EmployeeController@getInoutDurationByDate')->name('inoutByDate');
 Route::get('/searchFilter', 'EmployeeController@searchMembers')->name('searchFilter');
 Route::get('/searchByFilter', 'EmployeeController@searchByFilter')->name('searchResults');
-//Route::get('/EmpMaster', 'EmployeeController@index')->name('Members');
+

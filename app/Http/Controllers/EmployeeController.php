@@ -247,7 +247,7 @@ class EmployeeController extends Controller
       ->groupBy('EmpMaster.EmpName', 'AllDataSub.Attn_Dt')
       ->orderBy('AllDataSub.Attn_Dt')
       ->get();
-    // error_log(sizeof($inOutData));
+
     return view('EmpMaster.inout')
       ->with(compact('inOutData', 'reqDate'));
   }
@@ -269,41 +269,48 @@ class EmployeeController extends Controller
   {
 
     $request->user()->authorizeRoles(['employee', 'manager']);
-    $EmpID = $request->get('ID');
-    $CompCode = $request->get('CompCode');
-    $DeptCode = $request->get('DeptCode');
-    $DesgCode = $request->get('DesgCode');
-    $ShiftCode = $request->get('ShiftGroupCode');
-    $EmpCode = $request->get('ID');
-    $EmpName = $request->get('EmpName');
-    $EmpAddress = $request->get('EmpAddress');
-    $EmpPhNo = $request->get('EmpPhNo');
-    $EmpMNo = $request->get('EmpPhNo');
-    $EmpEmail = $request->get('EmpEmail');
-    $EmpDOB = $request->get('EmpDOB');
-    $EmpMarried = $request->get('EmpMarried');
-    $EmpJoinDate = $request->get('EmpJoinDate');
-    $EmpPunchID = $request->get('ID');
 
-    $employees = EmpMaster::where(
-      'EmpID',
-      'LIKE',
-      '%' . $EmpID . '%'
-    )
-      ->where('CompCode', 'LIKE', '%' . $CompCode . '%')
-      ->where('DeptCode', 'LIKE', '%' . $DeptCode . '%')
-      ->where('EmpCode', 'LIKE', '%' . $EmpCode . '%')
-      ->where('ShiftCode', 'LIKE', '%' . $ShiftCode . '%')
-      ->where('DesgCode', 'LIKE', '%' . $DesgCode . '%')
-      ->where('EmpName', 'LIKE', '%' . $EmpName . '%')
-      ->where('EmpAddress', 'LIKE', '%' . $EmpAddress . '%')
-      ->where('EmpPhNo', 'LIKE', '%' . $EmpPhNo . '%')
-      ->where('EmpMarried', 'LIKE', '%' . $EmpMarried . '%')
-      ->where('EmpJoinDate', 'LIKE', '%' . $EmpJoinDate . '%')
-      ->where('EmpPunchID', 'LIKE', '%' . $EmpPunchID . '%')
-      ->simplePaginate(10);
+    $filters = [
+      'EmpID' => $request->get('ID'),
+      'DesgCode' => $request->get('DesgCode'),
+      'EmpCode' => $request->get('ID'),
+      'EmpName' => $request->get('EmpName'),
+      'EmpAddress' => $request->get('EmpAddress'),
+      'EmpPhNo' => $request->get('EmpPhNo'),
+      'EmpMNo' => $request->get('EmpPhNo'),
+      'EmpEmail' => $request->get('EmpEmail'),
+      'EmpJoinDate' => $request->get('EmpJoinDate'),
+      'EmpPunchID' => $request->get('ID'),
+      'dtDiff' => $request->get('dtDiff')
+    ];
 
+    $employees = EmpMaster::where(function ($employees) use ($request, $filters) {
+      foreach ($filters as $column => $value) {
+        if (!$value == '') {
+          if ($column == 'EmpID' || $column == 'EmpPunchID' || $column == 'EmpCode' || $column == 'DesgCode') {
+            error_log("where($column, =, $value");
+            $employees->where($column, '=', $value);
+          }
+          if ($column == 'EmpJoinDate') {
 
+            $start = new DateTime(date("d-m-Y", strtotime($value)));
+            $end = new DateTime(date("d-m-Y", strtotime($value . "+1 day")));
+            //error_log("$column*$start*$end");
+            $employees->whereBetween($column, [$start, $end]);
+          }
+
+          if (($column <> 'EmpJoinDate') && ($column <> 'dtDiff')) {
+            error_log('2' . $column . $value);
+            $employees->where($column, 'LIKE', '%' . $value . '%');
+          }
+          if ($column == 'dtDiff') {
+            error_log('1' . $column . $value);
+            $bin = $value;
+            $employees->whereRaw("ABS(DATEDIFF(day,EmpResignDate,GETDATE())) <= $bin");
+          }
+        }
+      }
+    })->get();
 
     return view('EmpMaster.searchRes', compact('employees'));
   }
